@@ -7,7 +7,7 @@ public class Solution
 
     public int CountBalls(int lowLimit, int highLimit)
     {
-        int[] frequency = new int[calculateSumOfDigits(RANGE_OF_LIMITS[1] - 1) + 1];
+        int[] frequency = new int[CalculateSumOfDigits(RANGE_OF_LIMITS[1] - 1) + 1];
         int maxFrequency = 0;
 
         for (int value = lowLimit; value <= highLimit; ++value)
