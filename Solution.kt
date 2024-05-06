@@ -1,32 +1,33 @@
 
-using System;
+import kotlin.math.pow
+import kotlin.math.max
 
-public class Solution
-{
-    private static readonly int[] RANGE_OF_LIMITS = { 1, (int)Math.Pow(10, 5) };
+class Solution {
 
-    public int CountBalls(int lowLimit, int highLimit)
-    {
-        int[] frequency = new int[calculateSumOfDigits(RANGE_OF_LIMITS[1] - 1) + 1];
-        int maxFrequency = 0;
-
-        for (int value = lowLimit; value <= highLimit; ++value)
-        {
-            int sumOfDigits = CalculateSumOfDigits(value);
-            maxFrequency = Math.Max(maxFrequency, ++frequency[sumOfDigits]);
-        }
-
-        return maxFrequency;
+    private companion object {
+        val RANGE_OF_LIMITS = intArrayOf(1, 10.0.pow(5.0).toInt())
     }
 
-    private int CalculateSumOfDigits(int value)
-    {
-        int sumOfDigits = 0;
-        while (value > 0)
-        {
-            sumOfDigits += value % 10;
-            value /= 10;
+    fun countBalls(lowLimit: Int, highLimit: Int): Int {
+        val frequency = IntArray(calculateSumOfDigits(RANGE_OF_LIMITS[1] - 1) + 1)
+        var maxFrequency = 0
+
+        for (value in lowLimit..highLimit) {
+            val sumOfDigits = calculateSumOfDigits(value)
+            maxFrequency = max(maxFrequency, ++frequency[sumOfDigits])
         }
-        return sumOfDigits;
+
+        return maxFrequency
+    }
+
+    private fun calculateSumOfDigits(value: Int): Int {
+        var sumOfDigits = 0
+        var v = value
+
+        while (v > 0) {
+            sumOfDigits += v % 10
+            v = (v / 10).toInt()
+        }
+        return sumOfDigits
     }
 }
